@@ -1,3 +1,5 @@
 export const Index: React.VFC = () => {
-  return <div></div>;
+  return <div>Index Page</div>;
 };
+
+export default Index;
