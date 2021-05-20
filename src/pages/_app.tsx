@@ -1,7 +1,7 @@
+import "src/styles/globalResets.css";
 import "tailwindcss/tailwind.css";
 
 import type { AppProps } from "next/app";
-
 
 const App = (props: AppProps) => {
   return (
