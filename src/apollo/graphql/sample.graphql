@@ -1,0 +1,13 @@
+query {
+  allTest {
+    edges {
+      node {
+        id
+        title
+        content
+        isBool
+        createdAt
+      }
+    }
+  }
+}
