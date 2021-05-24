@@ -1,6 +1,7 @@
 import { Layout } from "src/components/Layout";
+import type { NextPage } from "next";
 
-const Index: React.VFC = () => {
+const Index: NextPage = () => {
   return (
     <Layout>
       <div className="flex flex-col min-h-screen justify-center items-center">
