@@ -1,4 +1,4 @@
-query {
+query sampleQuery {
   allTest {
     edges {
       node {

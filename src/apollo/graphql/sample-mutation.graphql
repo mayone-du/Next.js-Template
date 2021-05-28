@@ -1,0 +1,12 @@
+mutation sampleMutation($title: String!, $thumbnail: Upload!) {
+  sampleMutation(title: $title, thumbnail: $thumbnail) {
+    edges {
+      node {
+        id
+        title
+        thumbnail
+        createdAt
+      }
+    }
+  }
+}
