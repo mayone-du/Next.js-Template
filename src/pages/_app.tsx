@@ -21,7 +21,7 @@ const App = (props: AppProps) => {
   return (
     <>
       <ApolloProvider client={client}>
-        <ThemeProvider>
+        <ThemeProvider attribute="class">
           <props.Component {...props.pageProps} />
         </ThemeProvider>
       </ApolloProvider>
