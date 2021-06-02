@@ -12,3 +12,7 @@
 - nookies
 - ESLint
 - Prettier
+
+## SetUp
+
+- Create /.env.local
