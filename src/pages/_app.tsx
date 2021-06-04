@@ -1,31 +1,25 @@
 import "tailwindcss/tailwind.css";
 
-import { ApolloClient, ApolloProvider } from "@apollo/client";
-import { createUploadLink } from "apollo-upload-client";
+import { ApolloProvider } from "@apollo/client";
+import type { NextPageContext } from "next";
 import type { AppProps } from "next/app";
 import { ThemeProvider } from "next-themes";
-import { cache } from "src/apollo/cache";
+import nookies from "nookies";
+import { initializeApollo } from "src/apollo/apolloClient";
 
-const App = (props: AppProps) => {
-  const API_ENDPOINT =
-    process.env.NODE_ENV === "development"
-      ? `${process.env.NEXT_PUBLIC_DEV_API_URL}graphql/`
-      : `${process.env.API_ENDPOINT}`;
-  const client = new ApolloClient({
-    link: createUploadLink({
-      uri: API_ENDPOINT,
-    }),
-    cache: cache,
-  });
+const App = (props: AppProps, context: NextPageContext) => {
+  const cookies = nookies.get(context);
+
+  const apolloClient = initializeApollo(null, cookies);
 
   return (
-    <>
-      <ApolloProvider client={client}>
+    <div>
+      <ApolloProvider client={apolloClient}>
         <ThemeProvider attribute="class">
           <props.Component {...props.pageProps} />
         </ThemeProvider>
       </ApolloProvider>
-    </>
+    </div>
   );
 };
 

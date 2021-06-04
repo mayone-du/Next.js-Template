@@ -1,3 +1,4 @@
-export type SampleType = {
-  text: string;
+export type Cookies = {
+  accessToken?: string;
+  refreshToken?: string;
 };
