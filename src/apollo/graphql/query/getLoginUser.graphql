@@ -1,0 +1,11 @@
+query GetLoginUser {
+  loginUser {
+    id
+    profileName
+    profileText
+    targetUser {
+      id
+      email
+    }
+  }
+}
