@@ -33,41 +33,46 @@ export const useAuth = () => {
   // signIn
   const handleSignIn = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    validateInputs();
-    try {
-      const { data: tokenData } = await getTokensMutation({
-        variables: {
-          email: inputEmail,
-          password: inputPassword,
-        },
-      });
+    const { isFormError } = validateInputs();
+    if (!isFormError) {
+      try {
+        const { data: tokenData } = await getTokensMutation({
+          variables: {
+            email: inputEmail,
+            password: inputPassword,
+          },
+        });
 
-      if (tokenData?.tokenAuth) {
-        setCookie(null, "accessToken", tokenData.tokenAuth.token, {
-          path: "/",
-          maxAge: calcDate(tokenData.tokenAuth.payload.exp),
-        });
-        setCookie(null, "refreshToken", tokenData.tokenAuth.refreshToken, {
-          path: "/",
-          maxAge: calcDate(tokenData.tokenAuth.refreshExpiresIn),
-        });
+        if (tokenData?.tokenAuth) {
+          setCookie(null, "accessToken", tokenData.tokenAuth.token, {
+            path: "/",
+            maxAge: calcDate(tokenData.tokenAuth.payload.exp),
+          });
+          setCookie(null, "refreshToken", tokenData.tokenAuth.refreshToken, {
+            path: "/",
+            maxAge: calcDate(tokenData.tokenAuth.refreshExpiresIn),
+          });
+        }
+        setInputEmail("");
+        setInputPassword("");
+      } catch (error) {
+        alert(error);
+        return;
       }
-      setInputEmail("");
-      setInputPassword("");
-    } catch (error) {
-      alert(error);
-      return;
     }
   };
 
   // signUp
   const handleSignUp = async (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    validateInputs();
-    await createUserMutation({ variables: { email: inputEmail, password: inputPassword } });
-    await handleSignIn(event);
-    setInputEmail("");
-    setInputPassword("");
+
+    const { isFormError } = validateInputs();
+    if (!isFormError) {
+      await createUserMutation({ variables: { email: inputEmail, password: inputPassword } });
+      await handleSignIn(event);
+      setInputEmail("");
+      setInputPassword("");
+    }
   };
   return {
     inputEmail,
