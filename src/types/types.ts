@@ -1,4 +1,5 @@
-export type Cookies = {
-  accessToken?: string;
-  refreshToken?: string;
+export type LoginUser = {
+  userId: string;
+  email: string;
+  userName: string;
 };
