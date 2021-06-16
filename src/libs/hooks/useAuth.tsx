@@ -1,4 +1,4 @@
-import { setCookie } from "nookies";
+import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { useCallback, useState } from "react";
 import { useCreateUserMutation, useGetTokensMutation } from "src/apollo/schema";
 import { calcDate } from "src/libs/calcDate";
@@ -74,6 +74,12 @@ export const useAuth = () => {
       setInputPassword("");
     }
   };
+
+  const handleSignOut = () => {
+    const cookies = parseCookies();
+    cookies.accessToken && destroyCookie(null, "accessToken", { path: "/", maxAge: -1 });
+    cookies.refreshToken && destroyCookie(null, "refreshToken", { path: "/", maxAge: -1 });
+  };
   return {
     inputEmail,
     setInputEmail,
@@ -83,5 +89,6 @@ export const useAuth = () => {
     handlePasswordChange,
     handleSignUp,
     handleSignIn,
+    handleSignOut,
   };
 };
