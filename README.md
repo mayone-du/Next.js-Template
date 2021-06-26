@@ -16,3 +16,5 @@
 ## SetUp
 
 - Create /.env.local
+- npm build
+- npm start
