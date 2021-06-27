@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { Footer } from "src/components/Footer";
-import { Header } from "src/components/Header";
+import { Footer } from "src/components/layouts/Footer";
+import { Header } from "src/components/layouts/Header";
 
 type Props = {
   metaTitle: string;

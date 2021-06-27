@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Layout } from "src/components/Layout";
+import { Layout } from "src/components/layouts/Layout";
 import { ThemeChanger } from "src/components/ThemeChanger";
 
 const Index: NextPage = () => {
