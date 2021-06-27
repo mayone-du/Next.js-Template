@@ -5,6 +5,7 @@
 - Next.js
 - TypeScript
 - Tailwind CSS
+- React Hot Toast
 - GraphQL
 - Apollo Client
 - GraphQL Code Generator
