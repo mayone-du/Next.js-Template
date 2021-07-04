@@ -24,27 +24,35 @@ export const Layout: React.FC<Props> = (props) => {
         <meta name="twitter:site" content="@mayo1201blog" />
 
         {/* PWA */}
-        <link rel="apple-touch-icon" type="image/png" href="/apple-touch-icon-180x180.png" />
+        <link
+          rel="apple-touch-icon"
+          type="image/png"
+          href="/pwa/icons/apple-touch-icon-180x180.png"
+        />
         <link rel="icon" sizes="512x512" href="/pwa/icons/icon-512x512.png" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" href="/images/favicon.ico" />
+        <link rel="manifest" href="/pwa/manifest.json" />
 
-        <meta name="msapplication-square70x70logo" content="/site-tile-70x70.png" />
-        <meta name="msapplication-square150x150logo" content="/site-tile-150x150.png" />
-        <meta name="msapplication-wide310x150logo" content="/site-tile-310x150.png" />
-        <meta name="msapplication-square310x310logo" content="/site-tile-310x310.png" />
+        <meta name="msapplication-square70x70logo" content="/pwa/icons/site-tile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="/pwa/icons/site-tile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="/pwa/icons/site-tile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="/pwa/icons/site-tile-310x310.png" />
         <meta name="msapplication-TileColor" content="#000" />
         {/* Safari */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="#000" />
         <meta name="apple-mobile-web-app-title" content="myapp" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png" />
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/pwa/icons/apple-touch-icon-180x180.png"
+        />
         {/* 一般 */}
-        <meta name="application-name" content="myapp" />
+        <meta name="application-name" content="App Name" />
         <meta name="theme-color" content="#000" />
-        <meta name="description" content="this is myapp" />
+        <meta name="description" content="app description" />
         <link rel="icon" sizes="512x512" href="/pwa/icons/icon-512x512.png" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/images/favicon.ico" />
         <link rel="manifest" href="/pwa/manifest.json" />
       </Head>
       <Header />
