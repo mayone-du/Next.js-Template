@@ -77,12 +77,12 @@ export const useAuth = () => {
     }
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = useCallback(() => {
     const cookies = parseCookies();
     cookies.accessToken && destroyCookie(null, "accessToken", { path: "/", maxAge: -1 });
     cookies.refreshToken && destroyCookie(null, "refreshToken", { path: "/", maxAge: -1 });
     toast("ログアウトしました。");
-  };
+  }, []);
   return {
     inputEmail,
     setInputEmail,
