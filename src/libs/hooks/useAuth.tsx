@@ -1,5 +1,6 @@
 import { destroyCookie, parseCookies, setCookie } from "nookies";
 import { useCallback, useState } from "react";
+import toast from "react-hot-toast";
 import { useCreateUserMutation, useGetTokensMutation } from "src/apollo/schema";
 import { calcDate } from "src/libs/calcDate";
 
@@ -19,11 +20,11 @@ export const useAuth = () => {
   const validateInputs = useCallback((): { isFormError: boolean } => {
     // メールアドレスが空文字
     if (inputEmail === "") {
-      alert("正しい形式でメールアドレスを入力してください。");
+      toast.error("正しい形式でメールアドレスを入力してください。");
       return { isFormError: true };
       // パスワードが4文字以下
     } else if (inputPassword.length <= 4) {
-      alert("パスワードは5文字以上で入力してください。");
+      toast.error("パスワードは5文字以上で入力してください。");
       return { isFormError: true };
     } else {
       return { isFormError: false };
@@ -56,7 +57,8 @@ export const useAuth = () => {
         setInputEmail("");
         setInputPassword("");
       } catch (error) {
-        alert(error);
+        toast.error("エラーが発生しました。");
+        console.error(error);
         return;
       }
     }
@@ -79,6 +81,7 @@ export const useAuth = () => {
     const cookies = parseCookies();
     cookies.accessToken && destroyCookie(null, "accessToken", { path: "/", maxAge: -1 });
     cookies.refreshToken && destroyCookie(null, "refreshToken", { path: "/", maxAge: -1 });
+    toast("ログアウトしました。");
   };
   return {
     inputEmail,
