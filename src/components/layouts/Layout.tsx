@@ -3,15 +3,22 @@ import { Footer } from "src/components/layouts/Footer";
 import { Header } from "src/components/layouts/Header";
 
 type Props = {
-  metaTitle: string;
+  meta?: {
+    pageName?: string;
+    description?: string;
+  };
 };
 
 export const Layout: React.FC<Props> = (props) => {
+  const meta = {
+    title: props.meta?.pageName ? `${props.meta.pageName} | サイトタイトル` : "サイトタイトル",
+    description: props.meta?.description ? props.meta.description : "description",
+  };
   return (
-    <div>
+    <>
       <Head>
-        <title>{props.metaTitle}</title>
-        <meta name="description" content="description" />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
         <meta property="og:url" content="https://" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Test Title" />
@@ -58,6 +65,6 @@ export const Layout: React.FC<Props> = (props) => {
       <Header />
       <main>{props.children}</main>
       <Footer />
-    </div>
+    </>
   );
 };

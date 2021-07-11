@@ -1,12 +1,12 @@
 import type { NextPage } from "next";
-import { Layout } from "src/components/Layout";
+import { Layout } from "src/components/layouts/Layout";
 import { useAuth } from "src/libs/hooks/useAuth";
 
 const SignIn: NextPage = () => {
   const { inputEmail, inputPassword, handleEmailChange, handlePasswordChange, handleSignIn } =
     useAuth();
   return (
-    <Layout metaTitle="SignIn">
+    <Layout meta={{ pageName: "SignIn" }}>
       <form className="border" onSubmit={handleSignIn}>
         <input type="email" value={inputEmail} onChange={handleEmailChange} />
         <input type="password" value={inputPassword} onChange={handlePasswordChange} />

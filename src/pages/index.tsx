@@ -4,7 +4,7 @@ import { ThemeChanger } from "src/components/ThemeChanger";
 
 const Index: NextPage = () => {
   return (
-    <Layout metaTitle="Index Page">
+    <Layout meta={{ pageName: "Index" }}>
       <div className="flex flex-col justify-center items-center min-h-screen">
         <div className="text-5xl">Index Page</div>
         <ThemeChanger />
