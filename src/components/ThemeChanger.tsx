@@ -1,6 +1,7 @@
 import { useTheme } from "next-themes";
+import { memo } from "react";
 
-export const ThemeChanger = () => {
+export const ThemeChanger = memo(() => {
   const { theme, setTheme } = useTheme();
   const handleLight = () => {
     setTheme("light");
@@ -22,4 +23,6 @@ export const ThemeChanger = () => {
       </div>
     </div>
   );
-};
+});
+
+ThemeChanger.displayName = "ThemeChanger";

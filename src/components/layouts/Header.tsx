@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { memo } from "react";
 
-export const Header: React.VFC = () => {
+export const Header: React.VFC = memo(() => {
   return (
     <header className="px-32">
       <nav className="flex justify-between items-center">
@@ -24,4 +25,6 @@ export const Header: React.VFC = () => {
       </nav>
     </header>
   );
-};
+});
+
+Header.displayName = "Header";
