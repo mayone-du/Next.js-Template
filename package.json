@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",
+    "@headlessui/react": "^1.4.0",
     "apollo-upload-client": "^15.0.0",
     "graphql": "^15.5.1",
     "graphql-request": "^3.5.0",
