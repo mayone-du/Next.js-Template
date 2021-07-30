@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "test": "jest --env=jsdom --verbose",
-    "generate": "graphql-codegen --config src/apollo/codegen.json"
+    "generate": "graphql-codegen --config src/graphql/schemas/codegen.json"
   },
   "dependencies": {
     "@apollo/client": "^3.3.21",

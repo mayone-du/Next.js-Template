@@ -5,7 +5,7 @@ import { createUploadLink } from "apollo-upload-client";
 import type { NextPageContext } from "next";
 import type { AppProps } from "next/dist/next-server/lib/router/router";
 import nookies, { parseCookies } from "nookies";
-import { cache } from "src/apollo/cache";
+import { cache } from "src/graphql/apollo/cache";
 import { GRAPHQL_API_ENDPOINT } from "src/utils/API_ENDPOINTS";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
