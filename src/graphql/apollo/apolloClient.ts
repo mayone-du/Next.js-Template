@@ -3,7 +3,7 @@ import { ApolloClient } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
 import type { NextPageContext } from "next";
-import type { AppProps } from "next/dist/next-server/lib/router/router";
+// import type { AppProps } from "next/dist/next-server/lib/router/router";
 import nookies, { parseCookies } from "nookies";
 import { cache } from "src/graphql/apollo/cache";
 import { GRAPHQL_API_ENDPOINT } from "src/utils/API_ENDPOINTS";
@@ -48,7 +48,8 @@ export const initializeApollo = (_initialState = null, context?: NextPageContext
 
 export const addApolloState = (
   client: ApolloClient<NormalizedCacheObject>,
-  pageProps: AppProps["pageProps"],
+  // pageProps: AppProps["pageProps"],
+  pageProps: any,
 ) => {
   if (pageProps?.props) {
     pageProps.props[APOLLO_STATE_PROP_NAME] = client.cache.extract();
