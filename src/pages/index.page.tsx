@@ -2,15 +2,15 @@ import type { NextPage } from "next";
 import { Layout } from "src/components/layouts/Layout";
 import { ThemeChanger } from "src/components/ThemeChanger";
 
-const Index: NextPage = () => {
+const IndexPage: NextPage = () => {
   return (
-    <Layout meta={{ pageName: "Index" }}>
+    <Layout meta={{ pageName: "IndexPage" }}>
       <div className="flex flex-col justify-center items-center min-h-screen">
-        <div className="text-5xl">Index Page</div>
+        <div className="text-5xl">IndexPage</div>
         <ThemeChanger />
       </div>
     </Layout>
   );
 };
 
-export default Index;
+export default IndexPage;

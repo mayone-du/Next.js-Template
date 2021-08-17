@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import { Layout } from "src/components/layouts/Layout";
 import { useAuth } from "src/libs/hooks/useAuth";
 
-const SignUp: NextPage = () => {
+const SignUpPage: NextPage = () => {
   const { inputEmail, inputPassword, handleEmailChange, handlePasswordChange, handleSignUp } =
     useAuth();
   return (
@@ -18,4 +18,4 @@ const SignUp: NextPage = () => {
   );
 };
 
-export default SignUp;
+export default SignUpPage;

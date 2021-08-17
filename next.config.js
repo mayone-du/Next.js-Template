@@ -4,7 +4,7 @@ module.exports = withPWA({
     API_ENDPOINT: process.env.API_ENDPOINT,
   },
   pwa: {
-    dest: "public",
+    dest: "public/pwa/sw",
   },
-  pageExtensions: ["tsx"],
+  pageExtensions: ["page.tsx"],
 });
