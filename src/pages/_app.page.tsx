@@ -8,7 +8,7 @@ import { ThemeProvider } from "next-themes";
 import nprogress from "nprogress";
 import { useEffect } from "react";
 import { Toaster } from "react-hot-toast";
-import { initializeApollo } from "src/graphql/apollo/apolloClient";
+import { initializeApollo } from "src/graphql/apollo/client";
 
 nprogress.configure({ showSpinner: false, speed: 400, minimum: 0.25 });
 
