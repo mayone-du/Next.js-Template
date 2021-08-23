@@ -1,7 +1,9 @@
 const withPWA = require("next-pwa");
 module.exports = withPWA({
   env: {
-    API_ENDPOINT: process.env.API_ENDPOINT,
+    GRAPHQL_API_URL: process.env.GRAPHQL_API_URL,
+    // CLOUDINARY_URL: process.env.CLOUDINARY_URL,
+    // CONTACT_SLACK_WEBHOOK_URL: process.env.CONTACT_SLACK_WEBHOOK_URL,
   },
   pwa: {
     dest: "public/pwa/sw",
