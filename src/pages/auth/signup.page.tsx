@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { Layout } from "src/components/layouts/Layout";
+import { Layout } from "src/Layouts/Layout";
 import { useAuth } from "src/libs/hooks/useAuth";
 
 const SignUpPage: NextPage = () => {

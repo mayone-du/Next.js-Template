@@ -1,12 +1,10 @@
-import { Layout } from "src/components/layouts/Layout";
+import { Layout } from "src/Layouts/Layout";
 
 const NotFoundPage = () => {
   return (
-    <div>
-      <Layout meta={{ pageName: "404 Not Found" }}>
-        <h2 className="text-3xl">404 Not Found</h2>
-      </Layout>
-    </div>
+    <Layout meta={{ pageName: "404 Not Found" }}>
+      <h2 className="text-3xl">404 Not Found</h2>
+    </Layout>
   );
 };
 
