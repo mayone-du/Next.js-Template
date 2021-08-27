@@ -2,46 +2,40 @@ import type { NormalizedCacheObject } from "@apollo/client";
 import { ApolloClient } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { createUploadLink } from "apollo-upload-client";
-import type { NextPageContext } from "next";
-// import type { AppProps } from "next/dist/next-server/lib/router/router";
-import nookies, { parseCookies } from "nookies";
 import { cache } from "src/graphql/apollo/cache";
 import { GRAPHQL_API_ENDPOINT } from "src/utils/API_ENDPOINTS";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-const httpLink = createUploadLink({
-  uri: GRAPHQL_API_ENDPOINT,
-});
-
+// TODO: ↓いらないかも
 const authLink = setContext((operation, { headers }) => {
-  const cookies = parseCookies();
-  const accessToken = cookies.accessToken;
-
-  // return the headers to the context so httpLink can read them
-  return accessToken
-    ? { headers: { ...headers, authorization: `JWT ${accessToken}` } }
-    : { headers };
+  return { headers };
 });
 
-const createApolloClient = () => {
+const createApolloClient = (idToken: string | undefined /* 引数でidTokenを受け取る */) => {
+  // 画像をアップロードするためにcreateUploadLinkを使う
+  const newHttpLink = createUploadLink({
+    uri: GRAPHQL_API_ENDPOINT,
+    headers: {
+      authorization: idToken ? `Bearer ${idToken}` : "",
+    },
+    // idTokenが存在していれば値をセット
+  });
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
-    link: typeof window === "undefined" ? httpLink : authLink.concat(httpLink),
+    // TODO: ↓authLinkで何も設定していないため、全て同じもので良いかもしれない
+    link: typeof window === "undefined" ? newHttpLink : authLink.concat(newHttpLink),
+    // link: newHttpLink,
     cache: cache,
   });
 };
-export const initializeApollo = (_initialState = null, context?: NextPageContext) => {
-  const cookies = nookies.get(context);
-
-  const _apolloClient = apolloClient ?? createApolloClient();
+export const initializeApollo = (_initialState = null, idToken: string | undefined) => {
+  const _apolloClient = apolloClient ?? createApolloClient(idToken);
   // SSR時は新しいclientを作成
   if (typeof window === "undefined") return _apolloClient;
-  // accessTokenがないときも新しいclientを作成
-  if (!cookies.accessToken) return _apolloClient;
   // CSR時は同じクライアントを使い回す
-  if (!apolloClient) apolloClient = _apolloClient;
+  // if (!apolloClient) apolloClient = _apolloClient;
 
   return _apolloClient;
 };

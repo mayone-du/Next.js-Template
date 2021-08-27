@@ -1,8 +1,8 @@
 {
   "schema": "http://localhost:8000/graphql/",
-  "documents": "src/apollo/graphql/operations/**/*.graphql",
+  "documents": "src/graphql/operations/**/*.graphql",
   "generates": {
-    "src/apollo/schema.ts": {
+    "src/graphql/schemas/schema.ts": {
       "plugins": ["typescript", "typescript-operations", "typescript-react-apollo"]
     }
   }
