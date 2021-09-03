@@ -1,5 +1,5 @@
 import type { CustomNextPage } from "next";
-import { Layout } from "src/Layouts";
+import { Layout } from "src/layouts";
 
 const NotFoundPage: CustomNextPage = () => {
   return (

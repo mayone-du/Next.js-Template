@@ -3,9 +3,9 @@ import type { NextPage } from "next";
 import { getSession } from "next-auth/client";
 import { useEffect } from "react";
 import { userInfoVar } from "src/graphql/apollo/cache";
-import { Footer } from "src/Layouts/Footer";
-import { Header } from "src/Layouts/Header";
-import { LayoutErrorBoundary } from "src/Layouts/LayoutErrorBoundary";
+import { Footer } from "src/layouts/Footer";
+import { Header } from "src/layouts/Header";
+import { LayoutErrorBoundary } from "src/layouts/LayoutErrorBoundary";
 
 // レイアウトコンポーネント。前ページで呼ぶ。
 export const Layout = (page: NextPage) => {

@@ -1,7 +1,7 @@
 import type { CustomNextPage } from "next";
 import { useSession } from "next-auth/client";
 import { ThemeChanger } from "src/components/ThemeChanger";
-import { Layout } from "src/Layouts";
+import { Layout } from "src/layouts";
 
 const IndexPage: CustomNextPage = () => {
   const [session, isLoading] = useSession();
