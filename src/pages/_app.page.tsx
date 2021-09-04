@@ -25,7 +25,7 @@ const App = (props: CustomAppProps) => {
   }
   useEffect(() => {
     nprogress.done();
-  }, []);
+  });
 
   // レイアウトを取得
   const getLayout =
