@@ -20,6 +20,7 @@ const GOOGLE_AUTHORIZATION_URL =
  * `accessToken` and `accessTokenExpires`. If an error occurs,
  * returns the old token and an error property
  */
+// アクセストークンのリフレッシュ用非同期関数
 const refreshAccessToken = async (token: any) => {
   try {
     const url =
@@ -39,7 +40,6 @@ const refreshAccessToken = async (token: any) => {
     });
 
     const refreshedTokens = await response.json();
-    // console.log("refreshedTokens", refreshedTokens);
 
     if (!response.ok) {
       throw refreshedTokens;
@@ -77,6 +77,7 @@ export default NextAuth({
     async signIn(_user, account, _profile) {
       // 初回サインイン時にDBにユーザーを登録し、二回目以降はユーザーが存在すればOKにする
       const apolloClient = initializeApollo(null, account.idToken);
+
       const { errors } = await apolloClient.mutate<SocialAuthMutation, SocialAuthMutationVariables>(
         {
           mutation: SocialAuthDocument,
@@ -85,6 +86,7 @@ export default NextAuth({
           },
         },
       );
+
       // SocialAuthのエラーが無ければOK
       if (errors) {
         console.error(errors);
@@ -93,17 +95,20 @@ export default NextAuth({
         return true;
       }
     },
+
     // リダイレクト時の処理 普通にページ遷移した時に呼び出されるぽい？
     async redirect(url, baseUrl) {
       // eslint-disable-next-line no-console
       console.log("redirect!", url, baseUrl);
       return url.startsWith(baseUrl) ? url : baseUrl;
     },
+
     // TODO: 要チェック
     async jwt(token: any, user, account: any, _profile, _isNewUser) {
       // eslint-disable-next-line no-console
       // console.log("NextAuth jwt fn", token, user, account, _profile, _isNewUser);
 
+      // ユーザー情報がすでにある場合？
       if (account && user) {
         return {
           idToken: account.id_token,
@@ -114,24 +119,22 @@ export default NextAuth({
         };
       }
 
+      // トークンの期限を確認。有効期限内であればトークンをそのまま返却
       // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
         return token;
       }
 
+      // アクセストークンの期限が切れていたら更新してその値を返す
       // Access token has expired, try to update it
       return refreshAccessToken(token);
-
-      // // Add access_token to the token right after signin
-      // if (account?.accessToken) {
-      //   token.accessToken = account.accessToken;
-      // }
-      // return token;
     },
+
     async session(session: any, token) {
       // eslint-disable-next-line no-console
-      // console.log("NextAuth session fn", token);
+      console.log("NextAuth session fn");
 
+      // tokenが存在する場合はidTokenなどをセットする
       if (token) {
         session.user = token.user;
         session.idToken = token.idToken;

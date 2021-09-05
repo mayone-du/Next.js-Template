@@ -10,7 +10,7 @@ import { DefaultSeo } from "next-seo";
 import { ThemeProvider } from "next-themes";
 import NProgress from "nprogress";
 import { Toaster } from "react-hot-toast";
-import { userInfoVar } from "src/graphql/apollo/cache";
+import { idTokenVar } from "src/graphql/apollo/cache";
 import { initializeApollo } from "src/graphql/apollo/client";
 
 NProgress.configure({ showSpinner: false, speed: 400, minimum: 0.25 });
@@ -26,8 +26,8 @@ Router.events.on("routeChangeError", () => {
 
 const App = (props: CustomAppProps) => {
   // MainLayoutでセットされた値を取得し、ApolloClientへ渡す
-  const userInfo = useReactiveVar(userInfoVar);
-  const apolloClient = initializeApollo(null, userInfo.idToken);
+  const idToken = useReactiveVar(idTokenVar);
+  const apolloClient = initializeApollo(null, idToken);
 
   // レイアウトを取得
   const getLayout =
@@ -40,7 +40,17 @@ const App = (props: CustomAppProps) => {
     <Provider session={props.pageProps.session}>
       <ApolloProvider client={apolloClient}>
         <ThemeProvider attribute="class" defaultTheme="light">
-          <DefaultSeo title={"Template"} description="Template Repo" />
+          <DefaultSeo
+            title={"Template"}
+            description="Template Repo"
+            additionalMetaTags={[{ property: "", content: "" }]}
+            additionalLinkTags={[
+              {
+                rel: "manifest",
+                href: "/pwa/manifest.json",
+              },
+            ]}
+          />
           {getLayout(<props.Component {...props.pageProps} />)}
           <Toaster toastOptions={{ duration: 2500 }} />
         </ThemeProvider>
