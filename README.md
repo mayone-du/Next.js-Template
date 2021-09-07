@@ -7,6 +7,7 @@
 - Tailwind CSS
 - Headless UI
 - React Hot Toast
+- React Icons
 - NextAuth
 - NextSeo
 - GraphQL
