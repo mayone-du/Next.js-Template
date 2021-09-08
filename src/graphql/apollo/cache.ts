@@ -2,12 +2,13 @@ import { InMemoryCache, makeVar } from "@apollo/client";
 
 export const cache = new InMemoryCache();
 
-// ApolloClient作成時のGoogleから渡されるidTokenの管理用ステート
+// ApolloClientにGoogleから渡されるidTokenを渡すためのステート
 export const idTokenVar = makeVar("");
 
-// ユーザーのローディングやログイン済みの判定を管理するためのグローバルステート
+// ユーザー情報のローディング・ログイン・IDの状態をグローバル管理するためのステート
 const InitialUserInfo = {
   isLogin: false,
   isLoading: true,
+  userId: "",
 };
 export const userInfoVar = makeVar(InitialUserInfo);

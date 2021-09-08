@@ -19,19 +19,66 @@ export type Scalars = {
    */
   DateTime: any;
   SocialCamelJSON: any;
+  /**
+   * Create scalar that ignores normal serialization/deserialization, since
+   * that will be handled by the multipart request spec
+   */
+  Upload: any;
 };
 
+export type CreateTaskMutationInput = {
+  title: Scalars['String'];
+  content?: Maybe<Scalars['String']>;
+  taskImage?: Maybe<Scalars['Upload']>;
+  clientMutationId?: Maybe<Scalars['String']>;
+};
+
+export type CreateTaskMutationPayload = {
+  __typename?: 'CreateTaskMutationPayload';
+  task?: Maybe<TaskNode>;
+  clientMutationId?: Maybe<Scalars['String']>;
+};
+
+
+export type DeleteTaskMutationInput = {
+  id: Scalars['ID'];
+  clientMutationId?: Maybe<Scalars['String']>;
+};
+
+export type DeleteTaskMutationPayload = {
+  __typename?: 'DeleteTaskMutationPayload';
+  task?: Maybe<TaskNode>;
+  clientMutationId?: Maybe<Scalars['String']>;
+};
 
 export type Mutation = {
   __typename?: 'Mutation';
   /** Social Auth Mutation */
   socialAuth?: Maybe<SocialAuth>;
+  createTask?: Maybe<CreateTaskMutationPayload>;
+  updateTask?: Maybe<UpdateTaskMutationPayload>;
+  deleteTask?: Maybe<DeleteTaskMutationPayload>;
 };
 
 
 export type MutationSocialAuthArgs = {
   accessToken: Scalars['String'];
   provider: Scalars['String'];
+};
+
+
+export type MutationCreateTaskArgs = {
+  input: CreateTaskMutationInput;
+};
+
+
+export type MutationUpdateTaskArgs = {
+  input: UpdateTaskMutationInput;
+};
+
+
+export type MutationDeleteTaskArgs = {
+  input: DeleteTaskMutationInput;
 };
 
 /** An object with an ID */
@@ -57,6 +104,9 @@ export type Query = {
   __typename?: 'Query';
   user?: Maybe<UserNode>;
   allUsers?: Maybe<UserNodeConnection>;
+  myUserInfo?: Maybe<UserNode>;
+  task?: Maybe<TaskNode>;
+  myAllTasks?: Maybe<TaskNodeConnection>;
 };
 
 
@@ -76,6 +126,22 @@ export type QueryAllUsersArgs = {
   email?: Maybe<Scalars['String']>;
   email_Icontains?: Maybe<Scalars['String']>;
   isStaff?: Maybe<Scalars['Boolean']>;
+};
+
+
+export type QueryTaskArgs = {
+  id: Scalars['ID'];
+};
+
+
+export type QueryMyAllTasksArgs = {
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['String']>;
+  after?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  title_Icontains?: Maybe<Scalars['String']>;
 };
 
 /** Social Auth Mutation */
@@ -125,6 +191,61 @@ export type SocialType = {
   modified: Scalars['DateTime'];
 };
 
+export type Subscription = {
+  __typename?: 'Subscription';
+  countSeconds?: Maybe<Scalars['Float']>;
+};
+
+
+export type SubscriptionCountSecondsArgs = {
+  upTo?: Maybe<Scalars['Int']>;
+};
+
+export type TaskNode = Node & {
+  __typename?: 'TaskNode';
+  /** The ID of the object. */
+  id: Scalars['ID'];
+  createUser: UserNode;
+  title: Scalars['String'];
+  content?: Maybe<Scalars['String']>;
+  taskImage?: Maybe<Scalars['String']>;
+  isDone: Scalars['Boolean'];
+  createdAt: Scalars['DateTime'];
+};
+
+export type TaskNodeConnection = {
+  __typename?: 'TaskNodeConnection';
+  /** Pagination data for this connection. */
+  pageInfo: PageInfo;
+  /** Contains the nodes in this connection. */
+  edges: Array<Maybe<TaskNodeEdge>>;
+};
+
+/** A Relay edge containing a `TaskNode` and its cursor. */
+export type TaskNodeEdge = {
+  __typename?: 'TaskNodeEdge';
+  /** The item at the end of the edge */
+  node?: Maybe<TaskNode>;
+  /** A cursor for use in pagination */
+  cursor: Scalars['String'];
+};
+
+export type UpdateTaskMutationInput = {
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  content?: Maybe<Scalars['String']>;
+  isDone?: Maybe<Scalars['Boolean']>;
+  taskImage?: Maybe<Scalars['Upload']>;
+  clientMutationId?: Maybe<Scalars['String']>;
+};
+
+export type UpdateTaskMutationPayload = {
+  __typename?: 'UpdateTaskMutationPayload';
+  task?: Maybe<TaskNode>;
+  clientMutationId?: Maybe<Scalars['String']>;
+};
+
+
 export type UserNode = Node & {
   __typename?: 'UserNode';
   /** The ID of the object. */
@@ -139,7 +260,19 @@ export type UserNode = Node & {
   isStaff: Scalars['Boolean'];
   firstName?: Maybe<Scalars['String']>;
   lastName?: Maybe<Scalars['String']>;
+  createUser: TaskNodeConnection;
   socialAuth: SocialNodeConnection;
+};
+
+
+export type UserNodeCreateUserArgs = {
+  offset?: Maybe<Scalars['Int']>;
+  before?: Maybe<Scalars['String']>;
+  after?: Maybe<Scalars['String']>;
+  first?: Maybe<Scalars['Int']>;
+  last?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  title_Icontains?: Maybe<Scalars['String']>;
 };
 
 
@@ -192,6 +325,17 @@ export type SocialAuthMutation = (
   )> }
 );
 
+export type GetMyUserInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMyUserInfoQuery = (
+  { __typename?: 'Query' }
+  & { myUserInfo?: Maybe<(
+    { __typename?: 'UserNode' }
+    & Pick<UserNode, 'id' | 'email' | 'username'>
+  )> }
+);
+
 
 export const SocialAuthDocument = gql`
     mutation SocialAuth($accessToken: String!) {
@@ -238,3 +382,39 @@ export function useSocialAuthMutation(baseOptions?: Apollo.MutationHookOptions<S
 export type SocialAuthMutationHookResult = ReturnType<typeof useSocialAuthMutation>;
 export type SocialAuthMutationResult = Apollo.MutationResult<SocialAuthMutation>;
 export type SocialAuthMutationOptions = Apollo.BaseMutationOptions<SocialAuthMutation, SocialAuthMutationVariables>;
+export const GetMyUserInfoDocument = gql`
+    query GetMyUserInfo {
+  myUserInfo {
+    id
+    email
+    username
+  }
+}
+    `;
+
+/**
+ * __useGetMyUserInfoQuery__
+ *
+ * To run a query within a React component, call `useGetMyUserInfoQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetMyUserInfoQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetMyUserInfoQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetMyUserInfoQuery(baseOptions?: Apollo.QueryHookOptions<GetMyUserInfoQuery, GetMyUserInfoQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetMyUserInfoQuery, GetMyUserInfoQueryVariables>(GetMyUserInfoDocument, options);
+      }
+export function useGetMyUserInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetMyUserInfoQuery, GetMyUserInfoQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetMyUserInfoQuery, GetMyUserInfoQueryVariables>(GetMyUserInfoDocument, options);
+        }
+export type GetMyUserInfoQueryHookResult = ReturnType<typeof useGetMyUserInfoQuery>;
+export type GetMyUserInfoLazyQueryHookResult = ReturnType<typeof useGetMyUserInfoLazyQuery>;
+export type GetMyUserInfoQueryResult = Apollo.QueryResult<GetMyUserInfoQuery, GetMyUserInfoQueryVariables>;
