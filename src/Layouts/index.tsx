@@ -33,6 +33,7 @@ export const Layout = (page: NextPage) => {
           >({
             query: GetMyUserInfoDocument,
           });
+
           userInfoVar({
             isLoading: false,
             isLogin: true,

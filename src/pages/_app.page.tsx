@@ -29,7 +29,6 @@ const App = (props: CustomAppProps) => {
   const idToken = useReactiveVar(idTokenVar);
   const apolloClient = initializeApollo(null, idToken);
 
-  // レイアウトを取得
   const getLayout =
     props.Component.getLayout ||
     ((page) => {

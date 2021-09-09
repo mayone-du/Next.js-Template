@@ -336,6 +336,16 @@ export type GetMyUserInfoQuery = (
   )> }
 );
 
+export type CountSecondsSubscriptionVariables = Exact<{
+  seconds: Scalars['Int'];
+}>;
+
+
+export type CountSecondsSubscription = (
+  { __typename?: 'Subscription' }
+  & Pick<Subscription, 'countSeconds'>
+);
+
 
 export const SocialAuthDocument = gql`
     mutation SocialAuth($accessToken: String!) {
@@ -418,3 +428,31 @@ export function useGetMyUserInfoLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetMyUserInfoQueryHookResult = ReturnType<typeof useGetMyUserInfoQuery>;
 export type GetMyUserInfoLazyQueryHookResult = ReturnType<typeof useGetMyUserInfoLazyQuery>;
 export type GetMyUserInfoQueryResult = Apollo.QueryResult<GetMyUserInfoQuery, GetMyUserInfoQueryVariables>;
+export const CountSecondsDocument = gql`
+    subscription CountSeconds($seconds: Int!) {
+  countSeconds(upTo: $seconds)
+}
+    `;
+
+/**
+ * __useCountSecondsSubscription__
+ *
+ * To run a query within a React component, call `useCountSecondsSubscription` and pass it any options that fit your needs.
+ * When your component renders, `useCountSecondsSubscription` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCountSecondsSubscription({
+ *   variables: {
+ *      seconds: // value for 'seconds'
+ *   },
+ * });
+ */
+export function useCountSecondsSubscription(baseOptions: Apollo.SubscriptionHookOptions<CountSecondsSubscription, CountSecondsSubscriptionVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useSubscription<CountSecondsSubscription, CountSecondsSubscriptionVariables>(CountSecondsDocument, options);
+      }
+export type CountSecondsSubscriptionHookResult = ReturnType<typeof useCountSecondsSubscription>;
+export type CountSecondsSubscriptionResult = Apollo.SubscriptionResult<CountSecondsSubscription>;

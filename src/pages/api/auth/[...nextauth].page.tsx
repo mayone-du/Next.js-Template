@@ -22,6 +22,7 @@ const GOOGLE_AUTHORIZATION_URL =
  */
 // アクセストークンのリフレッシュ用非同期関数
 const refreshAccessToken = async (token: any) => {
+  // console.log("refreshAccessTokenが呼ばれました");
   try {
     const url =
       "https://oauth2.googleapis.com/token?" +
@@ -122,18 +123,17 @@ export default NextAuth({
       // トークンの期限を確認。有効期限内であればトークンをそのまま返却
       // Return previous token if the access token has not expired yet
       if (Date.now() < token.accessTokenExpires) {
+        // console.log("トークンは有効です。");
         return token;
       }
 
+      // console.log("トークンは無効です。");
       // アクセストークンの期限が切れていたら更新してその値を返す
       // Access token has expired, try to update it
       return refreshAccessToken(token);
     },
 
     async session(session: any, token) {
-      // eslint-disable-next-line no-console
-      console.log("NextAuth session fn");
-
       // tokenが存在する場合はidTokenなどをセットする
       if (token) {
         session.user = token.user;
