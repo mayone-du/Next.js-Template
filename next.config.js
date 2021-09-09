@@ -1,5 +1,8 @@
 // const withPWA = require("next-pwa");
 // module.exports = withPWA({
+// rewrites: async () => {
+//   return [{ source: "/", destination: "/root" }];
+// },
 //   env: {
 //     GRAPHQL_API_URL: process.env.GRAPHQL_API_URL,
 //     // CLOUDINARY_URL: process.env.CLOUDINARY_URL,
@@ -15,6 +18,9 @@
 
 // TODO: ServiceWorkerのエラー解決できるまでPWAは無効化
 module.exports = {
+  rewrites: async () => {
+    return [{ source: "/", destination: "/root" }];
+  },
   env: {
     GRAPHQL_API_URL: process.env.GRAPHQL_API_URL,
     // CLOUDINARY_URL: process.env.CLOUDINARY_URL,
