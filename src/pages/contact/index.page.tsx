@@ -1,15 +1,17 @@
 import type { CustomNextPage } from "next";
-import { useCallback } from "react";
-import toast from "react-hot-toast";
+import { NextSeo } from "next-seo";
 import { Layout } from "src/layouts";
+import { useContact } from "src/pages/contact/useContact";
+import { SITE_NAME } from "src/utils/constants/SITE_NAME";
 
 const ContactIndexPage: CustomNextPage = () => {
-  const handleSubmit = useCallback(async (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    toast.success("お問い合わせ");
-  }, []);
+  const PAGE_NAME = "お問い合わせ";
+
+  const { handleSubmit } = useContact();
+
   return (
     <div>
+      <NextSeo title={`${PAGE_NAME} | ${SITE_NAME}`} />
       <h1>お問い合わせ</h1>
       <form className="w-full max-w-lg" onSubmit={handleSubmit}>
         <div className="flex flex-wrap -mx-3 mb-6">
