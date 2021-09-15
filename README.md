@@ -8,6 +8,7 @@
 - Headless UI
 - React Hot Toast
 - React Icons
+- React Hook Form
 - NextAuth
 - NextSeo
 - GraphQL
