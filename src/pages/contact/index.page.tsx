@@ -1,80 +1,41 @@
 import type { CustomNextPage } from "next";
 import { NextSeo } from "next-seo";
+import { useForm } from "react-hook-form";
 import { Layout } from "src/layouts";
-import { useContact } from "src/pages/contact/useContact";
 import { SITE_NAME } from "src/utils/constants/SITE_NAME";
+
+type ContactInputs = {
+  title: string;
+  content: string;
+};
 
 const ContactIndexPage: CustomNextPage = () => {
   const PAGE_NAME = "お問い合わせ";
 
-  const { handleSubmit } = useContact();
+  const { register, handleSubmit } = useForm<ContactInputs>();
+
+  const onSubmit = (data: ContactInputs) => {
+    alert(JSON.stringify(data));
+  };
 
   return (
     <>
       <NextSeo title={`${PAGE_NAME} | ${SITE_NAME}`} />
       <div>
         <h1>お問い合わせ</h1>
-        <form className="w-full max-w-lg" onSubmit={handleSubmit}>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="px-3 w-full">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-password"
-              >
-                Nickname
-              </label>
-              <input
-                className="block py-3 px-4 mb-3 w-full leading-tight text-gray-700 bg-gray-200 focus:bg-white rounded border border-gray-200 focus:border-gray-500 appearance-none focus:outline-none"
-                id="nick"
-                type="text"
-              />
-              <p className="text-xs italic text-gray-600">Remove if not needed</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="px-3 w-full">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-password"
-              >
-                E-mail
-              </label>
-              <input
-                className="block py-3 px-4 mb-3 w-full leading-tight text-gray-700 bg-gray-200 focus:bg-white rounded border border-gray-200 focus:border-gray-500 appearance-none focus:outline-none"
-                id="email"
-                type="email"
-              />
-              <p className="text-xs italic text-gray-600">Some tips - as long as needed</p>
-            </div>
-          </div>
-          <div className="flex flex-wrap -mx-3 mb-6">
-            <div className="px-3 w-full">
-              <label
-                className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase"
-                htmlFor="grid-password"
-              >
-                Message
-              </label>
-              <textarea
-                className="block py-3 px-4 mb-3 w-full h-48 leading-tight text-gray-700 bg-gray-200 focus:bg-white rounded border border-gray-200 focus:border-gray-500 appearance-none focus:outline-none resize-none"
-                id="message"
-              ></textarea>
-              <p className="text-xs italic text-gray-600">
-                Re-size can be disabled by set by resize-none / resize-y / resize-x / resize
-              </p>
-            </div>
-          </div>
-          <div className="md:flex md:items-center">
-            <div className="md:w-1/3">
-              <button
-                className="py-2 px-4 font-bold text-white bg-green-400 rounded shadow focus:outline-none"
-                type="submit"
-              >
-                Send
-              </button>
-            </div>
-            <div className="md:w-2/3"></div>
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            type="text"
+            className="block border"
+            {...register("title", { required: true, maxLength: 100 })}
+          />
+          <textarea
+            {...register("content", { required: true })}
+            className="border resize-none"
+          ></textarea>
+          <button type="submit" className="block text-center rounded-md border">
+            送信
+          </button>
         </form>
       </div>
     </>
