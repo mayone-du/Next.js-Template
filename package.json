@@ -53,6 +53,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-tailwindcss": "^1.14.3",
     "jest": "^26.6.3",
+    "next-sitemap": "^1.6.168",
     "postcss": "^8.3.6",
     "prettier": "^2.4.0",
     "react-hook-form": "^7.15.3",
