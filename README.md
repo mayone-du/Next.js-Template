@@ -11,6 +11,7 @@
 - React Hook Form
 - NextAuth
 - NextSeo
+- next-sitemap
 - GraphQL
 - Apollo Client
 - GraphQL Code Generator
