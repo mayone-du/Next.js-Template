@@ -21,7 +21,13 @@ const IndexPage: CustomNextPage = () => {
   });
 
   const handleClick = useCallback(() => {
-    toast.success("ボタンがクリックされました。");
+    const toastId = toast.loading("ローディング...");
+    try {
+      toast.success("ボタンがクリックされました", { id: toastId });
+    } catch (error) {
+      console.error(error);
+      toast.error("エラー", { id: toastId });
+    }
   }, []);
 
   // ユーザー情報のローディング

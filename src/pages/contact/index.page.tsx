@@ -1,6 +1,7 @@
 import type { CustomNextPage } from "next";
 import { NextSeo } from "next-seo";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { Layout } from "src/layouts";
 import { SITE_NAME } from "src/utils/constants/SITE_NAME";
 
@@ -15,7 +16,18 @@ const ContactIndexPage: CustomNextPage = () => {
   const { register, handleSubmit } = useForm<ContactInputs>();
 
   const onSubmit = (data: ContactInputs) => {
-    alert(JSON.stringify(data));
+    const toastId = toast.loading("送信中...");
+    try {
+      alert(JSON.stringify(data));
+      toast.success("送信しました", {
+        id: toastId,
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error("送信が失敗しました", {
+        id: toastId,
+      });
+    }
   };
 
   return (
