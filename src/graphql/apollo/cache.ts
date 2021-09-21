@@ -12,3 +12,6 @@ const InitialUserInfo = {
   userId: "",
 };
 export const userInfoVar = makeVar(InitialUserInfo);
+
+// 認証モーダルの開閉用ステート
+export const isOpenAuthModalVar = makeVar(false);

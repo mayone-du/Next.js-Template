@@ -1,18 +1,20 @@
+import { useReactiveVar } from "@apollo/client";
 import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { isOpenAuthModalVar } from "src/graphql/apollo/cache";
 import { handleSignIn } from "src/libs/functions/handleSignIn";
 
 export const useAuthModal = () => {
-  // 認証モーダルの開閉
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const isOpenAuthModal = useReactiveVar(isOpenAuthModalVar);
 
+  // 認証モーダルの開閉
   const handleOpenModal = useCallback(() => {
-    setIsOpenModal(true);
+    isOpenAuthModalVar(true);
   }, []);
   const handleCloseModal = useCallback(() => {
-    setIsOpenModal(false);
+    isOpenAuthModalVar(false);
   }, []);
 
   // モーダルの中身のボタンをクリックした時
@@ -25,7 +27,7 @@ export const useAuthModal = () => {
   // コンポーネントを返す関数
   const renderModal = () => {
     return (
-      <Transition appear show={isOpenModal} as="div">
+      <Transition appear show={isOpenAuthModal} as="div">
         <Dialog
           as="div"
           className="overflow-y-auto fixed inset-0 z-10 bg-gray-400 bg-opacity-40"
