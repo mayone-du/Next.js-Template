@@ -1,9 +1,7 @@
 import type { CustomNextPage } from "next";
 import { NextSeo } from "next-seo";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { Layout } from "src/layouts";
-import { SITE_NAME } from "src/utils/constants/SITE_NAME";
 
 type ContactInputs = {
   title: string;
@@ -13,37 +11,37 @@ type ContactInputs = {
 const ContactIndexPage: CustomNextPage = () => {
   const PAGE_NAME = "お問い合わせ";
 
-  const { register, handleSubmit } = useForm<ContactInputs>();
-
-  const onSubmit = (data: ContactInputs) => {
-    const toastId = toast.loading("送信中...");
-    try {
-      alert(JSON.stringify(data));
-      toast.success("送信しました", {
-        id: toastId,
-      });
-    } catch (error) {
-      console.error(error);
-      toast.error("送信が失敗しました", {
-        id: toastId,
-      });
-    }
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<ContactInputs>();
+  const onSubmit = (formData: ContactInputs) => {
+    alert(JSON.stringify(formData));
   };
-
   return (
     <>
-      <NextSeo title={`${PAGE_NAME} | ${SITE_NAME}`} />
+      <NextSeo title={PAGE_NAME} />
       <div>
         <h1>お問い合わせ</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             type="text"
             className="block border"
-            {...register("title", { required: true, maxLength: 100 })}
+            placeholder="タイトル"
+            {...register("title", { required: true, maxLength: 20 })}
           />
+          {/* タイトルのエラーハンドリング */}
+          {errors.title && (
+            <p className="pb-4 text-sm text-gray-500">
+              {errors.title.type === "required" ? "必須です。" : "20文字までです。"}
+            </p>
+          )}
+
           <textarea
-            {...register("content", { required: true })}
+            placeholder="お問い合わせ内容"
             className="border resize-none"
+            {...register("content", { required: true })}
           ></textarea>
           <button type="submit" className="block text-center rounded-md border">
             送信
@@ -53,7 +51,6 @@ const ContactIndexPage: CustomNextPage = () => {
     </>
   );
 };
-
 export default ContactIndexPage;
 
 ContactIndexPage.getLayout = Layout;

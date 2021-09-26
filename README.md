@@ -10,7 +10,7 @@
 - React Icons
 - React Hook Form
 - NextAuth
-- NextSeo
+- NextSEO
 - next-sitemap
 - GraphQL
 - Apollo Client

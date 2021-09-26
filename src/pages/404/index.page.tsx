@@ -1,15 +1,15 @@
 import type { CustomNextPage } from "next";
 import { NextSeo } from "next-seo";
 import { Layout } from "src/layouts";
-import { SITE_NAME } from "src/utils/constants/SITE_NAME";
 
 const NotFoundPage: CustomNextPage = () => {
-  const PAGE_NAME = "404 Not Found";
   return (
     <>
-      <NextSeo title={`${PAGE_NAME} | ${SITE_NAME}`} />
+      <NextSeo title="お探しのページは見つかりませんでした。" />
+
       <div>
-        <h2 className="text-3xl">{PAGE_NAME}</h2>
+        <h2 className="text-3xl font-bold text-center">404 Not Found.</h2>
+        <p className="py-4 text-center">お探しのページは見つかりませんでした。</p>
       </div>
     </>
   );
