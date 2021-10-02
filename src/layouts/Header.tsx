@@ -10,7 +10,7 @@ import { HEADER_MENUS } from "src/utils/HEADER_MENUS";
 export const Header: React.VFC = memo(() => {
   const [session] = useSession();
   const userInfo = useReactiveVar(userInfoVar);
-  const { handleOpenModal, renderModal } = useAuthModal();
+  const { handleOpenModal } = useAuthModal();
 
   const handleSignOut = useCallback(() => {
     signOut();
@@ -124,7 +124,6 @@ export const Header: React.VFC = memo(() => {
                 >
                   SignIn
                 </button>
-                {renderModal()}
               </div>
             )}
           </li>

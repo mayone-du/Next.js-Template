@@ -9,10 +9,12 @@ import { GetMyUserInfoDocument } from "src/graphql/schemas/schema";
 import { Footer } from "src/layouts/Footer";
 import { Header } from "src/layouts/Header";
 import { LayoutErrorBoundary } from "src/layouts/LayoutErrorBoundary";
+import { useAuthModal } from "src/libs/hooks/useAuthModal";
 
 // pagesのgetLayoutで指定されたページで呼ばれる。ページのリロード時に呼ばれ、ページ遷移時には呼ばれない。
 export const Layout = (page: NextPage) => {
   const idToken = useReactiveVar(idTokenVar);
+  const { renderModal } = useAuthModal();
 
   // 初回マウント時にユーザー情報を取得し、ReactiveVariablesでグローバル管理して、_appで値を参照する
   useEffect(() => {
@@ -55,6 +57,7 @@ export const Layout = (page: NextPage) => {
 
   return (
     <div>
+      {renderModal()}
       <Header />
       <main className="px-4 md:px-60 lg:px-72 mx-auto">
         <LayoutErrorBoundary>{page}</LayoutErrorBoundary>

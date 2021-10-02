@@ -12,7 +12,6 @@ import NProgress from "nprogress";
 import { Toaster } from "react-hot-toast";
 import { idTokenVar } from "src/graphql/apollo/cache";
 import { initializeApollo } from "src/graphql/apollo/client";
-import { useAuthModal } from "src/libs/hooks/useAuthModal";
 
 NProgress.configure({ showSpinner: false, speed: 400, minimum: 0.25 });
 Router.events.on("routeChangeStart", () => {
@@ -29,7 +28,6 @@ const App = (props: CustomAppProps) => {
   // MainLayoutでセットされた値を取得し、ApolloClientへ渡す
   const idToken = useReactiveVar(idTokenVar);
   const apolloClient = initializeApollo(null, idToken);
-  const { renderModal } = useAuthModal();
 
   const getLayout =
     props.Component.getLayout ||
@@ -53,7 +51,7 @@ const App = (props: CustomAppProps) => {
               },
             ]}
           />
-          {getLayout(<props.Component {...props.pageProps} {...renderModal()} />)}
+          {getLayout(<props.Component {...props.pageProps} />)}
           <Toaster toastOptions={{ duration: 2500 }} />
         </ThemeProvider>
       </ApolloProvider>
