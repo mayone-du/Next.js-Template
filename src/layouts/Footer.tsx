@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { memo } from "react";
-import { FOOTER_MENUS } from "src/utils/FOOTER_MENUS";
+import { FOOTER_MENUS } from "src/utils/menus/FOOTER_MENUS";
 
 export const Footer: React.VFC = memo(() => {
   return (

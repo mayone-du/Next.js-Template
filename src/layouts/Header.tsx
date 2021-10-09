@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/client";
 import { memo, useCallback } from "react";
 import { userInfoVar } from "src/graphql/apollo/cache";
 import { useAuthModal } from "src/libs/hooks/useAuthModal";
-import { HEADER_MENUS } from "src/utils/HEADER_MENUS";
+import { HEADER_MENUS } from "src/utils/menus/HEADER_MENUS";
 
 export const Header: React.VFC = memo(() => {
   const [session] = useSession();
@@ -16,7 +16,7 @@ export const Header: React.VFC = memo(() => {
     signOut();
   }, []);
 
-  const menu_items = [
+  const PROFILE_MENU_ITEMS = [
     {
       label: "sample",
       href: "##",
@@ -28,14 +28,14 @@ export const Header: React.VFC = memo(() => {
   ];
 
   return (
-    <header className="py-2 md:px-60 lg:px-72">
+    <header className="py-2 md:px-60 lg:px-72 border-b">
       <nav className="flex justify-between items-center">
         <div>
           <Link href="/">
             <a className="block text-lg font-bold">LOGO</a>
           </Link>
         </div>
-        <ul className="flex items-center">
+        <ul className="flex justify-between items-center">
           {/* ヘッダーメニューを事前に定義し、mapで回して表示 */}
           {HEADER_MENUS.map((menu, index) => {
             return (
@@ -48,12 +48,12 @@ export const Header: React.VFC = memo(() => {
           })}
           {/* ローディング時の場合 */}
           {userInfo.isLoading && (
-            <div className="w-10 h-10 bg-gray-300 rounded-full animate-pulse"></div>
+            <div className="ml-2 w-10 h-10 bg-gray-300 rounded-full animate-pulse"></div>
           )}
-          <li className="mx-2">
-            {/* ログイン状態によって変更 */}
-            {/* ログイン時の場合 */}
-            {!userInfo.isLoading && userInfo.isLogin && (
+          {/* ログイン状態によって変更 */}
+          {/* ログイン時の場合 */}
+          {!userInfo.isLoading && userInfo.isLogin && (
+            <li className="ml-2">
               <div className="top-16 mx-auto w-full">
                 <Popover className="relative">
                   {({ open: isOpen }) => {
@@ -64,13 +64,13 @@ export const Header: React.VFC = memo(() => {
                             isOpen && "ring"
                           }`}
                         >
-                          {session?.user?.image ? (
-                            <img src={session.user.image} alt="" />
-                          ) : (
-                            <div>No Image</div>
-                          )}
+                          <img
+                            src={session?.user?.image ?? ""}
+                            className="block object-cover"
+                            alt=""
+                          />
                         </Popover.Button>
-                        <Popover.Panel className="absolute -right-2 z-10 mt-4 w-72 bg-white dark:bg-black rounded border shadow-md transform">
+                        <Popover.Panel className="absolute right-0 z-10 mt-4 w-72 bg-white dark:bg-black rounded border shadow-md transform">
                           <ul>
                             {/* プロフィールのリンク */}
                             <li>
@@ -78,14 +78,16 @@ export const Header: React.VFC = memo(() => {
                               <Popover.Button className="block w-full text-left">
                                 <Link href={`/users/${userInfo.userId}`}>
                                   <a className="block py-2 px-4 hover:bg-gray-200 transition-colors duration-300">
-                                    profile <br />
-                                    @hoge
+                                    <span className="block">sample username</span>
+                                    <span className="block text-xs text-gray-400">
+                                      @{userInfo.userId}
+                                    </span>
                                   </a>
                                 </Link>
                               </Popover.Button>
                             </li>
                             {/* メニューを表示 */}
-                            {menu_items.map((item, index) => {
+                            {PROFILE_MENU_ITEMS.map((item, index) => {
                               return (
                                 <li key={index}>
                                   <Popover.Button className="block w-full text-left">
@@ -114,9 +116,11 @@ export const Header: React.VFC = memo(() => {
                   }}
                 </Popover>
               </div>
-            )}
-            {/* 非ログイン時の場合 */}
-            {!userInfo.isLoading && !userInfo.isLogin && (
+            </li>
+          )}
+          {/* 非ログイン時の場合 */}
+          {!userInfo.isLoading && !userInfo.isLogin && (
+            <li className="ml-2">
               <div>
                 <button
                   onClick={handleOpenModal}
@@ -125,8 +129,8 @@ export const Header: React.VFC = memo(() => {
                   SignIn
                 </button>
               </div>
-            )}
-          </li>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
