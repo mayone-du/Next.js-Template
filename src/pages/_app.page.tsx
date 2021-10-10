@@ -9,6 +9,7 @@ import { Provider } from "next-auth/client";
 import { DefaultSeo } from "next-seo";
 import { ThemeProvider } from "next-themes";
 import NProgress from "nprogress";
+import { memo } from "react";
 import { Toaster } from "react-hot-toast";
 import { idTokenVar } from "src/graphql/apollo/cache";
 import { initializeApollo } from "src/graphql/apollo/client";
@@ -24,7 +25,7 @@ Router.events.on("routeChangeError", () => {
   return NProgress.done();
 });
 
-const App = (props: CustomAppProps) => {
+const App = memo((props: CustomAppProps) => {
   // MainLayoutでセットされた値を取得し、ApolloClientへ渡す
   const idToken = useReactiveVar(idTokenVar);
   const apolloClient = initializeApollo(null, idToken);
@@ -57,6 +58,8 @@ const App = (props: CustomAppProps) => {
       </ApolloProvider>
     </Provider>
   );
-};
+});
 
 export default App;
+
+App.displayName = "App";
