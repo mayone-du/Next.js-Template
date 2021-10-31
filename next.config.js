@@ -14,6 +14,7 @@
 //     dest: "/public/pwa/sw",
 //   },
 //   pageExtensions: ["page.tsx", "page.ts"],
+// swcMinify: true;
 // });
 
 // TODO: ServiceWorkerのエラー解決できるまでPWAは無効化
@@ -29,4 +30,5 @@ module.exports = {
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   },
   pageExtensions: ["page.tsx", "page.ts"],
+  swcMinify: true,
 };
