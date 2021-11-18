@@ -1,4 +1,5 @@
 // const withPWA = require("next-pwa");
+/** @type {import('next').NextConfig} */
 // module.exports = withPWA({
 // rewrites: async () => {
 //   return [{ source: "/", destination: "/root" }];
@@ -18,6 +19,7 @@
 // });
 
 // TODO: ServiceWorkerのエラー解決できるまでPWAは無効化
+/** @type {import('next').NextConfig} */
 module.exports = {
   rewrites: async () => {
     return [{ source: "/", destination: "/root" }];
