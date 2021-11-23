@@ -5,8 +5,8 @@ import { setContext } from "@apollo/client/link/context";
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createUploadLink } from "apollo-upload-client";
+import { GRAPHQL_API_ENDPOINT } from "src/constants";
 import { cache } from "src/graphql/apollo/cache";
-import { GRAPHQL_API_ENDPOINT } from "src/utils/constants/API_ENDPOINTS";
 
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;

@@ -6,10 +6,10 @@ import { idTokenVar, userInfoVar } from "src/graphql/apollo/cache";
 import { initializeApollo } from "src/graphql/apollo/client";
 import type { GetMyUserInfoQuery, GetMyUserInfoQueryVariables } from "src/graphql/schemas/schema";
 import { GetMyUserInfoDocument } from "src/graphql/schemas/schema";
+import { useAuthModal } from "src/hooks/useAuthModal";
 import { Footer } from "src/layouts/Footer";
 import { Header } from "src/layouts/Header";
 import { LayoutErrorBoundary } from "src/layouts/LayoutErrorBoundary";
-import { useAuthModal } from "src/libs/hooks/useAuthModal";
 
 // pagesのgetLayoutで指定されたページで呼ばれる。ページのリロード時に呼ばれ、ページ遷移時には呼ばれない。
 export const Layout = (page: NextPage) => {

@@ -3,9 +3,10 @@ import { Popover } from "@headlessui/react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/client";
 import { memo, useCallback } from "react";
+import { HEADER_MENUS } from "src/constants/menus/header";
+import { STATIC_ROUTES } from "src/constants/routes";
 import { userInfoVar } from "src/graphql/apollo/cache";
-import { useAuthModal } from "src/libs/hooks/useAuthModal";
-import { HEADER_MENUS } from "src/utils/menus/HEADER_MENUS";
+import { useAuthModal } from "src/hooks/useAuthModal";
 
 export const Header: React.VFC = memo(() => {
   const [session] = useSession();
@@ -31,7 +32,7 @@ export const Header: React.VFC = memo(() => {
     <header className="py-2 md:px-60 lg:px-72 border-b">
       <nav className="flex justify-between items-center">
         <div>
-          <Link href="/">
+          <Link href={STATIC_ROUTES.HOME}>
             <a className="block text-lg font-bold">LOGO</a>
           </Link>
         </div>

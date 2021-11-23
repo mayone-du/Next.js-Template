@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useCallback } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { isOpenAuthModalVar } from "src/graphql/apollo/cache";
-import { handleSignIn } from "src/libs/functions/handleSignIn";
+import { handleSignIn } from "src/utils/functions/handleSignIn";
 
 export const useAuthModal = () => {
   const isOpenAuthModal = useReactiveVar(isOpenAuthModalVar);
