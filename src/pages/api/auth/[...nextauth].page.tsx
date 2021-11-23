@@ -1,8 +1,11 @@
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
 import { initializeApollo } from "src/graphql/apollo/client";
-import type { SocialAuthMutation, SocialAuthMutationVariables } from "src/graphql/schemas/schema";
-import { SocialAuthDocument } from "src/graphql/schemas/schema";
+import type {
+  SocialAuthMutation,
+  SocialAuthMutationVariables,
+} from "src/graphql/schemas/generated/schema";
+import { SocialAuthDocument } from "src/graphql/schemas/generated/schema";
 
 // TODO: 各引数で受け取る値の型の修正
 

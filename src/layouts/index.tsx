@@ -4,8 +4,11 @@ import { getSession } from "next-auth/client";
 import { useEffect } from "react";
 import { idTokenVar, userInfoVar } from "src/graphql/apollo/cache";
 import { initializeApollo } from "src/graphql/apollo/client";
-import type { GetMyUserInfoQuery, GetMyUserInfoQueryVariables } from "src/graphql/schemas/schema";
-import { GetMyUserInfoDocument } from "src/graphql/schemas/schema";
+import type {
+  GetMyUserInfoQuery,
+  GetMyUserInfoQueryVariables,
+} from "src/graphql/schemas/generated/schema";
+import { GetMyUserInfoDocument } from "src/graphql/schemas/generated/schema";
 import { useAuthModal } from "src/hooks/useAuthModal";
 import { Footer } from "src/layouts/Footer";
 import { Header } from "src/layouts/Header";

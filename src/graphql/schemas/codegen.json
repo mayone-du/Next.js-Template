@@ -2,7 +2,7 @@
   "schema": "http://localhost:8000/graphql/",
   "documents": "src/graphql/operations/**/*.graphql",
   "generates": {
-    "src/graphql/schemas/schema.ts": {
+    "src/graphql/schemas/generated/schema.ts": {
       "plugins": ["typescript", "typescript-operations", "typescript-react-apollo"]
     }
   }
