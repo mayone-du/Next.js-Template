@@ -1,2 +1,2 @@
-export * from "src/constants/menus/footer";
-export * from "src/constants/menus/header";
+export { FOOTER_MENUS } from "src/constants/menus/footer";
+export { HEADER_MENUS } from "src/constants/menus/header";

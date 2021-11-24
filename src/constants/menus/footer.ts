@@ -7,4 +7,4 @@ export const FOOTER_MENUS = [
     href: "/about",
     label: "このサービスについて",
   },
-];
+] as const;
