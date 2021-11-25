@@ -5,12 +5,11 @@ import { useCallback } from "react";
 import toast from "react-hot-toast";
 import { NotAuth } from "src/components/NotAuth";
 import { UserLoading } from "src/components/UserLoading";
+import { TITLES } from "src/constants/titles";
 import { userInfoVar } from "src/graphql/apollo/cache";
 import { Layout } from "src/layouts";
 
 const IndexPage: CustomNextPage = () => {
-  const PAGE_NAME = "トップページ";
-
   const userInfo = useReactiveVar(userInfoVar);
 
   const handleClick = useCallback(() => {
@@ -19,7 +18,7 @@ const IndexPage: CustomNextPage = () => {
 
   return (
     <>
-      <NextSeo title={PAGE_NAME} />
+      <NextSeo title={TITLES.HOME} />
       <BreadcrumbJsonLd
         itemListElements={[
           {

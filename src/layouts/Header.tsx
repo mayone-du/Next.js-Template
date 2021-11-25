@@ -38,9 +38,9 @@ export const Header: React.VFC = memo(() => {
         </div>
         <ul className="flex justify-between items-center">
           {/* ヘッダーメニューを事前に定義し、mapで回して表示 */}
-          {HEADER_MENUS.map((menu, index) => {
+          {HEADER_MENUS.map((menu) => {
             return (
-              <li key={index.toString()} className="mx-2">
+              <li key={menu.href} className="mx-2">
                 <Link href={menu.href}>
                   <a>{menu.label}</a>
                 </Link>
@@ -88,9 +88,9 @@ export const Header: React.VFC = memo(() => {
                               </Popover.Button>
                             </li>
                             {/* メニューを表示 */}
-                            {PROFILE_MENU_ITEMS.map((item, index) => {
+                            {PROFILE_MENU_ITEMS.map((item) => {
                               return (
-                                <li key={index}>
+                                <li key={item.href}>
                                   <Popover.Button className="block w-full text-left">
                                     <Link href={item.href}>
                                       <a className="block py-2 px-4 hover:bg-gray-200 border-t transition-colors duration-300">
