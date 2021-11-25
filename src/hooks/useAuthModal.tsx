@@ -3,6 +3,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
 import { useCallback } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { STATIC_ROUTES } from "src/constants/routes";
 import { isOpenAuthModalVar } from "src/graphql/apollo/cache";
 import { handleSignIn } from "src/utils/functions/handleSignIn";
 
@@ -77,7 +78,7 @@ export const useAuthModal = () => {
                 </div>
 
                 <p className="mt-4 text-xs text-gray-500">
-                  <Link href="/terms">
+                  <Link href={STATIC_ROUTES.TERM}>
                     <a
                       // onClick={handleCloseModal}
                       className="hover:text-blue-500 underline hover:no-underline transition-colors"
@@ -86,7 +87,7 @@ export const useAuthModal = () => {
                     </a>
                   </Link>
                   、
-                  <Link href="/privacy-policy">
+                  <Link href={STATIC_ROUTES.PRIVACY_POLICY}>
                     <a
                       // onClick={handleCloseModal}
                       className="hover:text-blue-500 underline hover:no-underline transition-colors"
