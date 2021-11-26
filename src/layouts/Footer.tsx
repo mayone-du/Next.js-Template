@@ -7,9 +7,9 @@ export const Footer: React.VFC = memo(() => {
     <footer>
       <nav className="bg-gray-400">
         <ul className="flex">
-          {FOOTER_MENUS.map((menu, index) => {
+          {FOOTER_MENUS.map((menu) => {
             return (
-              <li key={index.toString()}>
+              <li key={menu.href}>
                 <Link href={menu.href}>
                   <a className="block p-2 m-2 border">{menu.href}</a>
                 </Link>
