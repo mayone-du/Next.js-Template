@@ -4,4 +4,8 @@ export const STATIC_ROUTES = {
   CONTACT: "/contact",
   TERM: "/term",
   PRIVACY_POLICY: "/privacy-policy",
+  SAMPLE: {
+    INDEX: "/sample",
+    HOGE: "/sample/hoge",
+  },
 } as const;
