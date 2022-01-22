@@ -1,6 +1,7 @@
 import { useReactiveVar } from "@apollo/client";
 import { Dialog, Transition } from "@headlessui/react";
 import Link from "next/link";
+import type { VFC } from "react";
 import { useCallback } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { STATIC_ROUTES } from "src/constants/routes";
@@ -26,7 +27,7 @@ export const useAuthModal = () => {
   }, []);
 
   // コンポーネントを返す関数
-  const renderModal = () => {
+  const AuthModal: VFC = () => {
     return (
       <Transition appear show={isOpenAuthModal} as="div">
         <Dialog
@@ -107,6 +108,7 @@ export const useAuthModal = () => {
 
   return {
     handleOpenModal,
-    renderModal,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    AuthModal,
   };
 };
