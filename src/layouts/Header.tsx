@@ -1,7 +1,7 @@
 import { useReactiveVar } from "@apollo/client";
 import { Popover } from "@headlessui/react";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/client";
+import { signOut, useSession } from "next-auth/react";
 import { memo, useCallback } from "react";
 import { HEADER_MENUS } from "src/constants/menus/header";
 import { STATIC_ROUTES } from "src/constants/routes";
@@ -9,7 +9,7 @@ import { userInfoVar } from "src/graphql/apollo/cache";
 import { useAuthModal } from "src/hooks/useAuthModal";
 
 export const Header: React.VFC = memo(() => {
-  const [session] = useSession();
+  const { data } = useSession();
   const userInfo = useReactiveVar(userInfoVar);
   const { handleOpenModal } = useAuthModal();
 
@@ -66,7 +66,7 @@ export const Header: React.VFC = memo(() => {
                           }`}
                         >
                           <img
-                            src={session?.user?.image ?? ""}
+                            src={data?.user?.image ?? ""}
                             className="block object-cover"
                             alt=""
                           />

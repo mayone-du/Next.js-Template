@@ -5,7 +5,7 @@ import { ApolloProvider, useReactiveVar } from "@apollo/client";
 import type { CustomAppProps } from "next/app";
 import Router from "next/router";
 // import type { AppProps } from "next/app";
-import { Provider } from "next-auth/client";
+import { SessionProvider } from "next-auth/react";
 import { DefaultSeo } from "next-seo";
 import { ThemeProvider } from "next-themes";
 import NProgress from "nprogress";
@@ -37,7 +37,7 @@ const App = memo((props: CustomAppProps) => {
     });
 
   return (
-    <Provider session={props.pageProps.session}>
+    <SessionProvider session={props.pageProps.session}>
       <ApolloProvider client={apolloClient}>
         <ThemeProvider attribute="class" defaultTheme="light">
           <DefaultSeo
@@ -56,7 +56,7 @@ const App = memo((props: CustomAppProps) => {
           <Toaster toastOptions={{ duration: 2500 }} />
         </ThemeProvider>
       </ApolloProvider>
-    </Provider>
+    </SessionProvider>
   );
 });
 

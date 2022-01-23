@@ -1,4 +1,4 @@
-import { getProviders, signIn } from "next-auth/client";
+import { getProviders, signIn } from "next-auth/react";
 
 // サインイン関数
 export const handleSignIn = async () => {
