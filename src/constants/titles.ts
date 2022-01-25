@@ -1,3 +1,4 @@
+// TODO: ページごとに設定する 型を書く
 /* eslint-disable @typescript-eslint/naming-convention */
 export const TITLES = {
   HOME: "トップページ",

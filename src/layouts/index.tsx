@@ -44,7 +44,6 @@ export const Layout = (page: NextPage) => {
             isLogin: true,
             userId: data.myUserInfo?.id ?? "",
           });
-          return;
         }
 
         // グローバル管理しているユーザー情報を更新

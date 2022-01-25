@@ -11,7 +11,7 @@ import { useAuthModal } from "src/hooks/useAuthModal";
 export const Header: React.VFC = memo(() => {
   const { data } = useSession();
   const userInfo = useReactiveVar(userInfoVar);
-  const { handleOpenModal } = useAuthModal();
+  const { handleToggleModal } = useAuthModal();
 
   const handleSignOut = useCallback(() => {
     signOut();
@@ -124,7 +124,7 @@ export const Header: React.VFC = memo(() => {
             <li className="ml-2">
               <div>
                 <button
-                  onClick={handleOpenModal}
+                  onClick={handleToggleModal}
                   className="block py-2 px-4 hover:bg-gray-50 rounded border shadow-sm hover:shadow transition-all"
                 >
                   SignIn

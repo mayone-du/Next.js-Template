@@ -1,8 +1,9 @@
 import { Switch } from "@headlessui/react";
 import { useTheme } from "next-themes";
+import type { VFC } from "react";
 import { memo, useCallback } from "react";
 
-export const ThemeChanger = memo(() => {
+export const ThemeChanger: VFC = memo(() => {
   const { theme, setTheme } = useTheme();
   const handleChangeTheme = useCallback(() => {
     return theme === "light" ? setTheme("dark") : setTheme("light");

@@ -12,17 +12,15 @@ export const useAuthModal = () => {
   const isOpenAuthModal = useReactiveVar(isOpenAuthModalVar);
 
   // 認証モーダルの開閉
-  const handleOpenModal = useCallback(() => {
-    isOpenAuthModalVar(true);
-  }, []);
-  const handleCloseModal = useCallback(() => {
-    isOpenAuthModalVar(false);
+  const handleToggleModal = useCallback(() => {
+    isOpenAuthModalVar(!isOpenAuthModal);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // モーダルの中身のボタンをクリックした時
   const handleClick = useCallback(async () => {
     await handleSignIn();
-    handleCloseModal();
+    handleToggleModal();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -33,7 +31,7 @@ export const useAuthModal = () => {
         <Dialog
           as="div"
           className="overflow-y-auto fixed inset-0 z-10 bg-gray-400 bg-opacity-40"
-          onClose={handleCloseModal}
+          onClose={handleToggleModal}
         >
           <div className="flex justify-center items-center px-4 min-h-screen">
             <Transition.Child
@@ -107,7 +105,7 @@ export const useAuthModal = () => {
   };
 
   return {
-    handleOpenModal,
+    handleToggleModal,
     // eslint-disable-next-line @typescript-eslint/naming-convention
     AuthModal,
   };
