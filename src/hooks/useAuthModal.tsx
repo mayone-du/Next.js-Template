@@ -6,7 +6,7 @@ import { useCallback } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { STATIC_ROUTES } from "src/constants/routes";
 import { isOpenAuthModalVar } from "src/graphql/apollo/cache";
-import { handleSignIn } from "src/utils/functions/handleSignIn";
+import { handleSignIn } from "src/utils/handleSignIn";
 
 export const useAuthModal = () => {
   const isOpenAuthModal = useReactiveVar(isOpenAuthModalVar);
