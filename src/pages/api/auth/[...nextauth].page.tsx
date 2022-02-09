@@ -78,15 +78,18 @@ export default NextAuth({
   ],
   callbacks: {
     // サインイン時の処理
-    async signIn(_user, account, _profile) {
+    signIn: async (params) => {
       // 初回サインイン時にDBにユーザーを登録し、二回目以降はユーザーが存在すればOKにする
-      const apolloClient = initializeApollo(null, account.idToken);
+      // const apolloClient = initializeApollo(null, params.account.id_token);
+      const apolloClient = initializeApollo(null, params.account.idToken);
 
+      // TODO: ここは絶対かわる
       const { errors } = await apolloClient.mutate<SocialAuthMutation, SocialAuthMutationVariables>(
         {
           mutation: SocialAuthDocument,
           variables: {
-            accessToken: account.accessToken,
+            // accessToken: params.account.access_token,
+            accessToken: params.account.accessToken,
           },
         },
       );
@@ -101,33 +104,33 @@ export default NextAuth({
     },
 
     // リダイレクト時の処理 普通にページ遷移した時に呼び出されるぽい？
-    async redirect(url, baseUrl) {
+    redirect: async (params) => {
       // eslint-disable-next-line no-console
-      console.log("redirect!", url, baseUrl);
-      return url.startsWith(baseUrl) ? url : baseUrl;
+      return params.url.startsWith(params.baseUrl) ? params.url : params.baseUrl;
     },
 
     // TODO: 要チェック
-    async jwt(token: any, user, account: any, _profile, _isNewUser) {
+    jwt: async (params) => {
       // eslint-disable-next-line no-console
       // console.log("NextAuth jwt fn", token, user, account, _profile, _isNewUser);
 
       // ユーザー情報がすでにある場合？
-      if (account && user) {
+      if (params.account && params.user) {
         return {
-          idToken: account.id_token,
-          accessToken: account.accessToken,
-          accessTokenExpires: Date.now() + account.expires_in * 1000,
-          refreshToken: account.refresh_token,
-          user,
+          idToken: params.account.id_token,
+          accessToken: params.account.accessToken,
+          // accessTokenExpires: Date.now() + params.account.expires_at * 1000,
+          accessTokenExpires: Date.now() + params.account.expires_in * 1000,
+          refreshToken: params.account.refresh_token,
+          user: params.user,
         };
       }
 
       // トークンの期限を確認。有効期限内であればトークンをそのまま返却
       // Return previous token if the access token has not expired yet
-      if (Date.now() < token.accessTokenExpires) {
+      if (Date.now() < params.token.accessTokenExpires) {
         // console.log("トークンは有効です。");
-        return token;
+        return params.token;
       }
 
       // console.log("トークンは無効です。");
@@ -136,15 +139,15 @@ export default NextAuth({
       return refreshAccessToken(token);
     },
 
-    async session(session: any, token) {
+    session: async (params) => {
       // tokenが存在する場合はidTokenなどをセットする
-      if (token) {
-        session.user = token.user;
-        session.idToken = token.idToken;
-        session.accessToken = token.accessToken;
-        session.error = token.error;
+      if (params.token) {
+        params.session.user = params.token.user;
+        params.session.idToken = params.token.idToken;
+        params.session.accessToken = params.token.accessToken;
+        params.session.error = params.token.error;
       }
-      return session;
+      return params.session;
     },
   },
 });
