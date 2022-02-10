@@ -2,7 +2,7 @@ import { useReactiveVar } from "@apollo/client";
 import type { NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { useEffect } from "react";
-import { idTokenVar, userInfoVar } from "src/graphql/apollo/cache";
+import { idTokenVar, userInfoVar } from "src/global/state";
 import { initializeApollo } from "src/graphql/apollo/client";
 import type {
   GetMyUserInfoQuery,
@@ -41,7 +41,7 @@ export const Layout = (page: NextPage) => {
 
           userInfoVar({
             isLoading: false,
-            isLogin: true,
+            isAuthenticated: true,
             userId: data.myUserInfo?.id ?? "",
           });
         }
@@ -50,7 +50,7 @@ export const Layout = (page: NextPage) => {
         userInfoVar({
           userId: "",
           isLoading: false,
-          isLogin: false,
+          isAuthenticated: false,
         });
       })();
     }

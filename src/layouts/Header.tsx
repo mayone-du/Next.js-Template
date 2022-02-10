@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import { memo, useCallback } from "react";
 import { HEADER_MENUS } from "src/constants/menus/header";
 import { STATIC_ROUTES } from "src/constants/routes";
-import { userInfoVar } from "src/graphql/apollo/cache";
+import { userInfoVar } from "src/global/state";
 import { useAuthModal } from "src/hooks/useAuthModal";
 
 export const Header: React.VFC = memo(() => {
@@ -53,7 +53,7 @@ export const Header: React.VFC = memo(() => {
           )}
           {/* ログイン状態によって変更 */}
           {/* ログイン時の場合 */}
-          {!userInfo.isLoading && userInfo.isLogin && (
+          {!userInfo.isLoading && userInfo.isAuthenticated && (
             <li className="ml-2">
               <div className="top-16 mx-auto w-full">
                 <Popover className="relative">
@@ -120,7 +120,7 @@ export const Header: React.VFC = memo(() => {
             </li>
           )}
           {/* 非ログイン時の場合 */}
-          {!userInfo.isLoading && !userInfo.isLogin && (
+          {!userInfo.isLoading && !userInfo.isAuthenticated && (
             <li className="ml-2">
               <div>
                 <button

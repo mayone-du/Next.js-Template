@@ -31,7 +31,7 @@ const IndexPage: CustomNextPage = () => {
       {userInfo.isLoading ? (
         // ユーザー情報のローディング
         <UserLoading />
-      ) : !userInfo.isLoading && !userInfo.isLogin ? (
+      ) : !userInfo.isLoading && !userInfo.isAuthenticated ? (
         // 非ログイン時
         <NotAuth />
       ) : (
