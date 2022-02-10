@@ -7,4 +7,4 @@ export const TITLES = {
   TERM: "利用規約",
   PRIVACY_POLICY: "プライバシーポリシー",
   404: "404 Not Found",
-};
+} as const;
