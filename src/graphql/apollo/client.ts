@@ -2,7 +2,7 @@ import type { NormalizedCacheObject } from "@apollo/client";
 import { ApolloClient } from "@apollo/client";
 import { split } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { WebSocketLink } from "@apollo/client/link/ws";
+// import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import { createUploadLink } from "apollo-upload-client";
 import { GRAPHQL_API_ENDPOINT } from "src/constants";
@@ -11,15 +11,15 @@ import { cache } from "src/graphql/apollo/cache";
 export const APOLLO_STATE_PROP_NAME = "__APOLLO_STATE__";
 let apolloClient: ApolloClient<NormalizedCacheObject> | undefined;
 
-// SubscriptionのWebSocketリンク SSRが不可のため、Client側でのみ動くようにする
-const wsLink = process.browser
-  ? new WebSocketLink({
-      uri: "ws://localhost:8000/subscriptions",
-      options: {
-        reconnect: true,
-      },
-    })
-  : undefined;
+// // SubscriptionのWebSocketリンク SSRが不可のため、Client側でのみ動くようにする
+// const wsLink = process.browser
+//   ? new WebSocketLink({
+//       uri: "ws://localhost:8000/subscriptions",
+//       options: {
+//         reconnect: true,
+//       },
+//     })
+//   : undefined;
 
 // TODO: ↓いらないかも
 const authLink = setContext((operation, { headers }) => {
@@ -42,7 +42,7 @@ const createApolloClient = (idToken: string | undefined /* 引数でidTokenを�
       const definition = getMainDefinition(query);
       return definition.kind === "OperationDefinition" && definition.operation === "subscription";
     },
-    wsLink ? wsLink : authLink.concat(newHttpLink),
+    // wsLink ? wsLink : authLink.concat(newHttpLink),
     // wsLink as WebSocketLink,
     authLink.concat(newHttpLink),
   );

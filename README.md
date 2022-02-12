@@ -26,3 +26,9 @@
   GOOGLE_CLIENT_SECRET
 - npm build
 - npm start
+
+## Note
+
+subscription が必要な場合は以下パッケージをインストールして apollo client の初期化部分のコメントを解除
+
+- "subscriptions-transport-ws": "^0.9.19"
