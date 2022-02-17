@@ -5625,9 +5625,9 @@ next-seo@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npmjs.org/next-seo/-/next-seo-5.1.0.tgz"
 
-next-sitemap@^1.6.173:
-  version "1.9.12"
-  resolved "https://registry.npmjs.org/next-sitemap/-/next-sitemap-1.9.12.tgz"
+next-sitemap@^2.4.2:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-2.4.2.tgz#f5b9c344ee8c4757ca72467084621b6158e628a2"
   dependencies:
     "@corex/deepmerge" "^2.6.148"
     minimist "^1.2.5"
