@@ -2,7 +2,6 @@ import { useReactiveVar } from "@apollo/client";
 import type { NextPage } from "next";
 import { getSession } from "next-auth/react";
 import { useEffect } from "react";
-import { idTokenVar, userInfoVar } from "src/global/state";
 import { initializeApollo } from "src/graphql/apollo/client";
 import type {
   GetMyUserInfoQuery,
@@ -16,7 +15,6 @@ import { LayoutErrorBoundary } from "src/layouts/LayoutErrorBoundary";
 
 // pagesのgetLayoutで指定されたページで呼ばれる。ページのリロード時に呼ばれ、ページ遷移時には呼ばれない。
 export const Layout = (page: NextPage) => {
-  const idToken = useReactiveVar(idTokenVar);
   const { AuthModal } = useAuthModal();
 
   // 初回マウント時にユーザー情報を取得し、ReactiveVariablesでグローバル管理して、_appで値を参照する
