@@ -1255,9 +1255,9 @@
   version "3.1.1"
   resolved "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.1.1.tgz"
 
-"@headlessui/react@^1.4.3":
-  version "1.4.3"
-  resolved "https://registry.npmjs.org/@headlessui/react/-/react-1.4.3.tgz"
+"@headlessui/react@^1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@headlessui/react/-/react-1.5.0.tgz#483b44ba2c8b8d4391e1d2c863898d7dd0cc0296"
 
 "@humanwhocodes/config-array@^0.5.0":
   version "0.5.0"
