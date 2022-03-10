@@ -1000,12 +1000,12 @@
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
-"@graphql-codegen/typescript-react-apollo@^3.2.5":
-  version "3.2.5"
-  resolved "https://registry.npmjs.org/@graphql-codegen/typescript-react-apollo/-/typescript-react-apollo-3.2.5.tgz"
+"@graphql-codegen/typescript-react-apollo@^3.2.10":
+  version "3.2.10"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/typescript-react-apollo/-/typescript-react-apollo-3.2.10.tgz#e5d2baa242b76262b76dbb12075b93c797a6a82f"
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
-    "@graphql-codegen/visitor-plugin-common" "2.6.0"
+    "@graphql-codegen/visitor-plugin-common" "2.7.3"
     auto-bind "~4.0.0"
     change-case-all "1.0.14"
     tslib "~2.3.0"
@@ -1020,9 +1020,9 @@
     auto-bind "~4.0.0"
     tslib "~2.3.0"
 
-"@graphql-codegen/visitor-plugin-common@2.6.0":
-  version "2.6.0"
-  resolved "https://registry.npmjs.org/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.6.0.tgz"
+"@graphql-codegen/visitor-plugin-common@2.7.1":
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.1.tgz#bdcded24d1d6f329d32b90704397d6001374b893"
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
     "@graphql-tools/optimize" "^1.0.1"
@@ -1035,9 +1035,9 @@
     parse-filepath "^1.0.2"
     tslib "~2.3.0"
 
-"@graphql-codegen/visitor-plugin-common@2.7.1":
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.1.tgz#bdcded24d1d6f329d32b90704397d6001374b893"
+"@graphql-codegen/visitor-plugin-common@2.7.3":
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/@graphql-codegen/visitor-plugin-common/-/visitor-plugin-common-2.7.3.tgz#f374e8974ae4ab7b1059a7f8748db6393f20c138"
   dependencies:
     "@graphql-codegen/plugin-helpers" "^2.4.0"
     "@graphql-tools/optimize" "^1.0.1"
