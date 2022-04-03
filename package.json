@@ -11,7 +11,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
-    "@apollo/client": "^3.5.9",
+    "@apollo/client": "^3.5.10",
     "@headlessui/react": "^1.5.0",
     "apollo-upload-client": "^17.0.0",
     "dayjs": "^1.10.8",
