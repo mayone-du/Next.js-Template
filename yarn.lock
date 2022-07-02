@@ -23,7 +23,7 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
-"@apollo/client@^3.0.0", "@apollo/client@^3.6.6":
+"@apollo/client@^3.6.6":
   version "3.6.6"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.6.6.tgz#3fb1f5b11da9a64b51b5a86b62450bee034e7f41"
   dependencies:
@@ -1837,11 +1837,11 @@
   version "2.0.0"
   resolved "https://registry.npmjs.org/@tootallnate/once/-/once-2.0.0.tgz"
 
-"@types/apollo-upload-client@^17.0.0":
-  version "17.0.0"
-  resolved "https://registry.npmjs.org/@types/apollo-upload-client/-/apollo-upload-client-17.0.0.tgz"
+"@types/apollo-upload-client@^17.0.1":
+  version "17.0.1"
+  resolved "https://registry.yarnpkg.com/@types/apollo-upload-client/-/apollo-upload-client-17.0.1.tgz#7aca38e160097162024d7b427d66168c3874ab1d"
   dependencies:
-    "@apollo/client" "^3.0.0"
+    "@apollo/client" "^3.6.6"
     "@types/extract-files" "*"
     graphql "14 - 16"
 
