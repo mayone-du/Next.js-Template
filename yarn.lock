@@ -2931,9 +2931,9 @@ dataloader@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-2.1.0.tgz#c69c538235e85e7ac6c6c444bae8ecabf5de9df7"
 
-dayjs@^1.11.3:
-  version "1.11.3"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.3.tgz#4754eb694a624057b9ad2224b67b15d552589258"
+dayjs@^1.11.5:
+  version "1.11.5"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.5.tgz#00e8cc627f231f9499c19b38af49f56dc0ac5e93"
 
 debounce@^1.2.0:
   version "1.2.0"
