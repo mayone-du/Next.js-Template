@@ -5052,9 +5052,9 @@ next-pwa@^5.5.4:
     workbox-webpack-plugin "^6.5.3"
     workbox-window "^6.5.3"
 
-next-seo@^5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.4.0.tgz#37a7784b30b3f70cec3fa0d77f9dde5990822d24"
+next-seo@^5.5.0:
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.5.0.tgz#12bdfce60a6ae098f49617357a166c2d44dbc29e"
 
 next-sitemap@^2.5.28:
   version "2.5.28"
