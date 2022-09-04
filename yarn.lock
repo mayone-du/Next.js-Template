@@ -3342,9 +3342,9 @@ eslint-plugin-simple-import-sort@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npmjs.org/eslint-plugin-simple-import-sort/-/eslint-plugin-simple-import-sort-7.0.0.tgz"
 
-eslint-plugin-tailwindcss@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-tailwindcss/-/eslint-plugin-tailwindcss-3.6.0.tgz#b29605a53b5c27b7e74986ca7fcc0c6bdc435ad3"
+eslint-plugin-tailwindcss@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-tailwindcss/-/eslint-plugin-tailwindcss-3.6.1.tgz#c5a73a8dca13fcb69ad810f060f7f7ce672e3041"
   dependencies:
     fast-glob "^3.2.5"
     postcss "^8.4.4"
