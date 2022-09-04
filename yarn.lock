@@ -3834,9 +3834,9 @@ graphql-ws@^5.4.1:
   version "5.5.5"
   resolved "https://registry.npmjs.org/graphql-ws/-/graphql-ws-5.5.5.tgz"
 
-"graphql@14 - 16", graphql@^16.5.0:
-  version "16.5.0"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.5.0.tgz#41b5c1182eaac7f3d47164fb247f61e4dfb69c85"
+"graphql@14 - 16", graphql@^16.6.0:
+  version "16.6.0"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-16.6.0.tgz#c2dcffa4649db149f6282af726c8c83f1c7c5fdb"
 
 has-bigints@^1.0.1:
   version "1.0.1"
