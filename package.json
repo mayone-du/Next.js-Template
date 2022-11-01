@@ -38,7 +38,7 @@
     "@testing-library/react": "^12.1.5",
     "@types/apollo-upload-client": "^17.0.1",
     "@types/jest": "^28.1.4",
-    "@types/node": "^18.0.3",
+    "@types/node": "^18.11.8",
     "@types/nprogress": "^0.2.0",
     "@types/react": "^18.0.8",
     "@typescript-eslint/eslint-plugin": "^4.32.0",
