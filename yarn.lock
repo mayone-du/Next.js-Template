@@ -3792,9 +3792,9 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-goober@^2.1.1:
-  version "2.1.7"
-  resolved "https://registry.npmjs.org/goober/-/goober-2.1.7.tgz"
+goober@^2.1.10:
+  version "2.1.13"
+  resolved "https://registry.yarnpkg.com/goober/-/goober-2.1.13.tgz#e3c06d5578486212a76c9eba860cbc3232ff6d7c"
 
 graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.9:
   version "4.2.9"
@@ -5605,11 +5605,11 @@ react-hook-form@^7.33.1:
   version "7.33.1"
   resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.33.1.tgz#8c4410e3420788d3b804d62cc4c142915c2e46d0"
 
-react-hot-toast@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.npmjs.org/react-hot-toast/-/react-hot-toast-2.2.0.tgz"
+react-hot-toast@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-2.4.1.tgz#df04295eda8a7b12c4f968e54a61c8d36f4c0994"
   dependencies:
-    goober "^2.1.1"
+    goober "^2.1.10"
 
 react-icons@^4.4.0:
   version "4.4.0"
